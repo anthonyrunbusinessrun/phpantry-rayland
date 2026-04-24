@@ -3,20 +3,24 @@ import { useEffect } from 'react'
 
 export default function ScrollReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
+    const selectors = ['.reveal', '.apple-fade', '.apple-fade-only', '.apple-scale', '.apple-left', '.apple-right']
+    const allEls = document.querySelectorAll(selectors.join(','))
+
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const delay = Number((entry.target as HTMLElement).dataset.delay || 0)
-            setTimeout(() => entry.target.classList.add('visible'), delay)
-            observer.unobserve(entry.target)
+            const el = entry.target as HTMLElement
+            const delay = Number(el.dataset.delay || 0)
+            setTimeout(() => el.classList.add('visible'), delay)
+            observer.unobserve(el)
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     )
-    els.forEach(el => observer.observe(el))
+
+    allEls.forEach(el => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 

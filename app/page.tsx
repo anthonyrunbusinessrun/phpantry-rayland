@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import Link from 'next/link'
+import VideoSection from '@/components/VideoSection'
 
 export default function Home() {
   useEffect(() => {
@@ -12,8 +13,9 @@ export default function Home() {
           observer.unobserve(el)
         }
       })
-    }, { threshold: 0.1 })
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' })
+    const selectors = '.reveal, .apple-fade, .apple-fade-only, .apple-scale, .apple-left, .apple-right'
+    document.querySelectorAll(selectors).forEach(el => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
@@ -84,12 +86,15 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ══ VIDEO SECTION ══ */}
+      <VideoSection />
+
       {/* ══ WELCOME / ABOUT ══ */}
       <section style={{ padding:'100px 5%', background:'var(--bg)' }}>
         <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }}>
 
           {/* Visual */}
-          <div className="reveal" data-delay="0" style={{ position:'relative' }}>
+          <div className="apple-left" data-delay="0" style={{ position:'relative' }}>
             <div style={{ borderRadius:6, height:500, background:'var(--hero-grad)', border:'1px solid rgba(255,255,255,0.07)', position:'relative', overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <div style={{ textAlign:'center', position:'relative', zIndex:1 }}>
                 <div style={{ fontFamily:'var(--font-script)', fontSize:90, opacity:0.18, color:'white', lineHeight:1 }}>PH</div>
@@ -108,7 +113,7 @@ export default function Home() {
           </div>
 
           {/* Text */}
-          <div className="reveal" data-delay="120">
+          <div className="apple-right" data-delay="120">
             <span className="section-tag">Welcome to PHPantry Philippines</span>
             <h2 style={{ fontSize:'clamp(28px,4vw,50px)', lineHeight:1.1, marginBottom:16, color:'var(--text)' }}>
               A Heartfelt Initiative<br />for Every <span className="text-teal">Filipino</span>
@@ -159,7 +164,7 @@ export default function Home() {
               { n:'03', title:'Church Hubs',        text:'Churches serve as trusted community anchors—offering space, volunteers, and guidance to help each pantry run smoothly.', emoji:'⛪', color:'#3B1FA3' },
               { n:'04', title:'Community Access',   text:'Each pantry ensures resources reach the right people at the right time—fairly, consistently, and with dignity.', emoji:'🤝', color:'#7B0028' },
             ].map((step, i) => (
-              <div key={i} className="reveal" data-delay={`${i * 100}`} style={{ textAlign:'center', padding:'0 20px', position:'relative', zIndex:1 }}>
+              <div key={i} className="apple-fade" data-delay={`${i * 80}`} style={{ textAlign:'center', padding:'0 20px', position:'relative', zIndex:1 }}>
                 <div style={{ width:88, height:88, borderRadius:'50%', margin:'0 auto 20px', background:`linear-gradient(135deg,${step.color},${step.color}CC)`, display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', gap:2, boxShadow:`0 8px 24px ${step.color}55` }}>
                   <div style={{ fontSize:22 }}>{step.emoji}</div>
                   <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:700, letterSpacing:'0.12em', color:'rgba(255,255,255,0.7)' }}>{step.n}</div>
@@ -191,7 +196,7 @@ export default function Home() {
               { n:'05', name:'Stewardship',   desc:'We manage resources wisely to maximize impact.' },
               { n:'06', name:'Hope',          desc:'We believe small acts of kindness can create lasting change.' },
             ].map((v, i) => (
-              <div key={i} className="reveal value-card-hover" data-delay={`${(i % 3) * 80}`} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:6, padding:'30px 26px' }}>
+              <div key={i} className="apple-scale value-card-hover" data-delay={`${(i % 3) * 100}`} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:6, padding:'30px 26px' }}>
                 <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:700, letterSpacing:'0.2em', color:'rgba(14,116,144,0.8)', marginBottom:14, textTransform:'uppercase' }}>{v.n}</div>
                 <div style={{ fontFamily:'var(--font-cond)', fontSize:24, fontWeight:700, color:'var(--text)', marginBottom:12 }}>{v.name}</div>
                 <div style={{ fontSize:14, color:'var(--text-muted)', lineHeight:1.8 }}>{v.desc}</div>
@@ -205,7 +210,7 @@ export default function Home() {
       <section style={{ padding:'100px 5%', background:'var(--bg-card2)' }}>
         <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80 }}>
           {/* Story */}
-          <div className="reveal" data-delay="0">
+          <div className="apple-left" data-delay="0">
             <span className="section-tag">The Story Behind the Pantry</span>
             <h2 style={{ fontSize:'clamp(24px,3vw,40px)', color:'var(--text)', marginBottom:16 }}>Born from <span className="text-gradient">Compassion</span></h2>
             <div className="accent-line" />
@@ -223,7 +228,7 @@ export default function Home() {
                 { title:'Volunteers Join',            text:'A growing network of hearts giving time, resources, and energy.', color:'#3B1FA3' },
                 { title:'A Movement Grows',           text:'Today, PHPantry Philippines reaches families across the nation.', color:'#7B0028' },
               ].map((item, i) => (
-                <div key={i} className="reveal" data-delay={`${i * 80}`} style={{ display:'flex', gap:20, marginBottom:28, position:'relative' }}>
+                <div key={i} className="apple-fade" data-delay={`${i * 100}`} style={{ display:'flex', gap:20, marginBottom:28, position:'relative' }}>
                   <div style={{ position:'absolute', left:-32+9-9, top:4, width:18, height:18, borderRadius:'50%', background:item.color, border:'2px solid var(--bg-card2)', zIndex:1, boxShadow:`0 0 10px ${item.color}88` }} />
                   <div>
                     <div style={{ fontFamily:'var(--font-cond)', fontSize:15, fontWeight:700, color:'var(--text)', marginBottom:5 }}>{item.title}</div>
@@ -235,7 +240,7 @@ export default function Home() {
           </div>
 
           {/* Church + Quote */}
-          <div className="reveal" data-delay="100" style={{ display:'flex', flexDirection:'column', gap:16 }}>
+          <div className="apple-right" data-delay="100" style={{ display:'flex', flexDirection:'column', gap:16 }}>
             <div style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderLeft:'3px solid #0E7490', borderRadius:6, padding:36 }}>
               <div style={{ fontSize:38, marginBottom:16 }}>⛪</div>
               <div style={{ fontFamily:'var(--font-cond)', fontSize:22, fontWeight:700, color:'var(--text)', marginBottom:14 }}>The Role of the Church</div>
@@ -361,7 +366,7 @@ export default function Home() {
               { emoji:'💙', title:'Donate',          text:'Your donation—whether food, supplies, or financial support—directly feeds families across the Philippines. Every contribution matters and creates real change.', color:'#3B1FA3' },
               { emoji:'📣', title:'Spread the Word', text:'Share our mission with your network. Every voice amplifies hope and invites more helpers to join the table. Together we build a stronger movement.', color:'#7B0028' },
             ].map((card, i) => (
-              <div key={i} className="reveal involve-card-hover" data-delay={`${i * 100}`} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:6, padding:'32px 28px', textAlign:'center' }}>
+              <div key={i} className="apple-fade involve-card-hover" data-delay={`${i * 120}`} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:6, padding:'32px 28px', textAlign:'center' }}>
                 <div style={{ width:60, height:60, background:`${card.color}1A`, border:`1px solid ${card.color}55`, borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 18px', fontSize:26 }}>{card.emoji}</div>
                 <div style={{ fontFamily:'var(--font-cond)', fontSize:20, fontWeight:700, color:'var(--text)', marginBottom:10 }}>{card.title}</div>
                 <div style={{ fontSize:13.5, color:'var(--text-muted)', lineHeight:1.8 }}>{card.text}</div>
