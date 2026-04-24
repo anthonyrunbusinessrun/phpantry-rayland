@@ -65,7 +65,7 @@ export default function Navbar() {
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{
               width: 40, height: 40,
-              background: 'linear-gradient(135deg,#1565C0,#C62828)',
+              background: 'var(--hero-grad)',
               borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '0 0 16px rgba(21,101,192,0.4)',
             }}>
