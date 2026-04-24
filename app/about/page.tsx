@@ -20,7 +20,7 @@ export default function About() {
           </h1>
           <div style={{ width:40, height:2, background:'var(--red)', marginTop:20, marginBottom:24 }} />
           <p style={{ fontSize:17, color:'rgba(255,255,255,0.7)', maxWidth:580, lineHeight:1.8, fontWeight:300 }}>
-            PHPantry Philippines is a heartfelt initiative founded by Raymond Land III, built on the belief that no Filipino should have to worry about their next meal.
+            PHPantry Philippines is a heartfelt initiative founded by Ray Land, built on the belief that no Filipino should have to worry about their next meal.
           </p>
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function About() {
 
             <div className="reveal" data-delay="200" style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderLeft:'3px solid var(--red)', borderRadius:6, padding:28 }}>
               <div style={{ fontFamily:'var(--font-cond)', fontSize:11, fontWeight:600, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--red-light)', marginBottom:8 }}>Founder</div>
-              <div style={{ fontFamily:'var(--font-script)', fontSize:28, color:'var(--text)', marginBottom:6 }}>Raymond Land III</div>
+              <div style={{ fontFamily:'var(--font-script)', fontSize:28, color:'var(--text)', marginBottom:6 }}>Ray Land</div>
               <div style={{ fontSize:13.5, color:'var(--text-muted)', lineHeight:1.7 }}>Driven by compassion and the belief that every Filipino deserves food with dignity.</div>
             </div>
           </div>
