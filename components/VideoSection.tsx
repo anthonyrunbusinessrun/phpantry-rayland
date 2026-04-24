@@ -22,7 +22,7 @@ import { useState } from 'react'
 // ─────────────────────────────────────────────────────────────
 
 const VIDEO_SOURCE: 'youtube' | 'vimeo' = 'youtube'
-const VIDEO_ID = 'REPLACE_WITH_YOUR_VIDEO_ID'
+const VIDEO_ID = 'U9EX3Pt0ff8'
 
 // Optional: thumbnail image shown before play
 // Upload a JPG to /public/video-poster.jpg OR use YouTube's auto thumbnail

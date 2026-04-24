@@ -29,69 +29,142 @@ export default function Navbar() {
         .nav-mobile-link:hover{color:#ECEFF1}
         @media(max-width:768px){.nav-desktop{display:none!important}.nav-hamburger{display:flex!important}}
         @media(min-width:769px){.nav-hamburger{display:none!important}}
+
+        /* ── ANIMATED LIGHT LINE ── */
+        .nav-light-line {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent       0%,
+            transparent       10%,
+            #C62828           20%,
+            #7B1FA2           30%,
+            #1565C0           40%,
+            #0E7490           50%,
+            #1565C0           60%,
+            #7B1FA2           70%,
+            #C62828           80%,
+            transparent       90%,
+            transparent       100%
+          );
+          background-size: 200% 100%;
+          animation: lightSweep 4s linear infinite;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+        .nav-light-line.visible {
+          opacity: 1;
+        }
+        /* The travelling glow on top of the line */
+        .nav-light-line::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: 0;
+          width: 120px;
+          height: 5px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(198,40,40,0.6),
+            rgba(21,101,192,0.9),
+            rgba(14,116,144,1),
+            rgba(21,101,192,0.9),
+            rgba(198,40,40,0.6),
+            transparent
+          );
+          border-radius: 4px;
+          filter: blur(2px);
+          animation: glowTravel 4s linear infinite;
+        }
+        @keyframes lightSweep {
+          0%   { background-position: 100% 0; }
+          100% { background-position: -100% 0; }
+        }
+        @keyframes glowTravel {
+          0%   { left: -120px; opacity: 0; }
+          5%   { opacity: 1; }
+          95%  { opacity: 1; }
+          100% { left: 100%; opacity: 0; }
+        }
       `}</style>
 
       <nav style={{
-        position:'fixed',top:0,left:0,right:0,zIndex:100,
-        background:scrolled?'rgba(7,13,24,0.96)':'transparent',
-        backdropFilter:scrolled?'blur(24px)':'none',
-        borderBottom:scrolled?'1px solid rgba(255,255,255,0.06)':'1px solid transparent',
-        transition:'all 0.4s ease',padding:'0 5%',
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+        background: scrolled ? 'rgba(7,13,24,0.96)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(24px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.04)' : '1px solid transparent',
+        transition: 'all 0.4s ease',
+        padding: '0 5%',
       }}>
-        <div style={{maxWidth:1200,margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'space-between',height:68}}>
+        <div style={{ maxWidth:1200, margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'space-between', height:68 }}>
 
-          {/* LOGO — shows logo.png from /public, fallback to text */}
-          <Link href="/" style={{textDecoration:'none',display:'flex',alignItems:'center'}}>
+          {/* LOGO */}
+          <Link href="/" style={{ textDecoration:'none', display:'flex', alignItems:'center' }}>
             {!logoError ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src="/logo.png"
                 alt="PH Pantry Philippines"
                 height={44}
-                style={{height:44,width:'auto',objectFit:'contain',maxWidth:180}}
+                style={{ height:44, width:'auto', objectFit:'contain', maxWidth:200 }}
                 onError={() => setLogoError(true)}
               />
             ) : (
-              /* Fallback text logo while waiting for real PNG upload */
-              <div style={{display:'flex',alignItems:'center',gap:10}}>
-                <div style={{width:36,height:36,borderRadius:6,background:'linear-gradient(135deg,#0E7490,#3B1FA3)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-                  <span style={{fontFamily:'var(--font-script)',fontSize:18,color:'white'}}>P</span>
+              <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+                <div style={{ width:36, height:36, borderRadius:6, background:'linear-gradient(135deg,#0E7490,#3B1FA3)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  <span style={{ fontFamily:'var(--font-script)', fontSize:18, color:'white' }}>P</span>
                 </div>
                 <div>
-                  <div style={{fontFamily:'var(--font-script)',fontSize:20,color:'#ECEFF1',lineHeight:1.1}}>PH Pantry</div>
-                  <div style={{fontFamily:'var(--font-cond)',fontSize:9,fontWeight:600,letterSpacing:'0.2em',textTransform:'uppercase',color:'rgba(103,232,249,0.7)'}}>Philippines</div>
+                  <div style={{ fontFamily:'var(--font-script)', fontSize:20, color:'#ECEFF1', lineHeight:1.1 }}>PH Pantry</div>
+                  <div style={{ fontFamily:'var(--font-cond)', fontSize:9, fontWeight:600, letterSpacing:'0.2em', textTransform:'uppercase', color:'rgba(103,232,249,0.7)' }}>Philippines</div>
                 </div>
               </div>
             )}
           </Link>
 
           {/* DESKTOP */}
-          <ul className="nav-desktop" style={{display:'flex',alignItems:'center',gap:36,listStyle:'none',margin:0}}>
-            {NAV_LINKS.map(({href,label})=>(
+          <ul className="nav-desktop" style={{ display:'flex', alignItems:'center', gap:36, listStyle:'none', margin:0 }}>
+            {NAV_LINKS.map(({ href, label }) => (
               <li key={href}><Link href={href} className="nav-link">{label}</Link></li>
             ))}
             <li>
-              <Link href="/get-involved" className="btn-primary" style={{padding:'8px 22px',fontSize:11}}>
+              <Link href="/get-involved" className="btn-primary" style={{ padding:'8px 22px', fontSize:11 }}>
                 Volunteer
               </Link>
             </li>
           </ul>
 
           {/* HAMBURGER */}
-          <button className="nav-hamburger" onClick={()=>setOpen(!open)} style={{background:'none',border:'none',cursor:'pointer',color:'var(--text)',display:'none',padding:4}} aria-label="Toggle menu">
+          <button
+            className="nav-hamburger"
+            onClick={() => setOpen(!open)}
+            style={{ background:'none', border:'none', cursor:'pointer', color:'var(--text)', display:'none', padding:4 }}
+            aria-label="Toggle menu"
+          >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {open?<><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>:<><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>}
+              {open
+                ? <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>
+                : <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>
+              }
             </svg>
           </button>
         </div>
 
+        {/* ANIMATED LIGHT LINE — always visible at bottom of nav */}
+        <div className={`nav-light-line ${scrolled ? 'visible' : 'visible'}`} />
+
         {/* MOBILE MENU */}
-        {open&&(
-          <div style={{background:'rgba(7,13,24,0.98)',borderTop:'1px solid var(--border)',padding:'8px 5% 20px'}}>
-            {NAV_LINKS.map(({href,label})=>(
-              <Link key={href} href={href} className="nav-mobile-link" onClick={()=>setOpen(false)}>{label}</Link>
+        {open && (
+          <div style={{ background:'rgba(7,13,24,0.98)', borderTop:'1px solid var(--border)', padding:'8px 5% 20px' }}>
+            {NAV_LINKS.map(({ href, label }) => (
+              <Link key={href} href={href} className="nav-mobile-link" onClick={() => setOpen(false)}>{label}</Link>
             ))}
-            <Link href="/get-involved" className="btn-primary" style={{marginTop:16,display:'inline-flex'}} onClick={()=>setOpen(false)}>
+            <Link href="/get-involved" className="btn-primary" style={{ marginTop:16, display:'inline-flex' }} onClick={() => setOpen(false)}>
               Volunteer Now
             </Link>
           </div>
