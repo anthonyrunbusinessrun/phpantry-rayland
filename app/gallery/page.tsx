@@ -16,12 +16,7 @@ const GALLERY = [
   { src: '/IMG_3502.jpg', label: 'Distribution Day',           caption: 'Ensuring resources reach those who need them', large: false },
   { src: '/IMG_3504 (1).jpg', label: 'Hands of Service',       caption: 'Volunteers working tirelessly with compassion', large: false },
   { src: '/IMG_3504.jpg', label: 'Together We Rise',           caption: 'A community choosing to care for its own', large: false },
-  // Team portraits
-  { src: '/Ereika.jpeg', label: 'Ereika — Team Member',        caption: 'Dedicated volunteer serving with heart', large: false },
-  { src: '/Joseph.jpg',  label: 'Joseph — Team Member',        caption: 'Committed to the mission every single day', large: false },
-  { src: '/Kaye.png',    label: 'Kaye — Team Member',          caption: 'Leading with compassion and purpose', large: false },
-  // Founder
-  { src: '/Rayland.jpeg', label: 'Ray Land — Founder',         caption: 'The heart and vision behind PHPantry Philippines', large: true  },
+
 ]
 
 export default function Gallery() {
@@ -92,12 +87,7 @@ export default function Gallery() {
             ))}
           </div>
 
-          {/* Team section label */}
-          <div style={{ marginTop: 64, marginBottom: 32, textAlign: 'center' }}>
-            <div style={{ width: 80, height: 1, background: 'var(--border)', margin: '0 auto 24px' }} />
-            <span className="section-tag" style={{ display: 'block' }}>The People Behind the Mission</span>
-            <p style={{ fontSize: 14, color: 'var(--text-muted)', marginTop: 8 }}>Every volunteer, every team member — making it happen every day.</p>
-          </div>
+
         </div>
       </section>
     </>
