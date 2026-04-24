@@ -259,6 +259,43 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ══ GALLERY PREVIEW ══ */}
+      <section style={{ padding:'100px 5%', background:'var(--bg-card2)' }}>
+        <div style={{ maxWidth:1200, margin:'0 auto' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:60, alignItems:'end', marginBottom:48 }}>
+            <div>
+              <span className="section-tag">In the Community</span>
+              <h2 style={{ fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', marginBottom:12 }}>Moments of <span className="text-teal">Hope</span></h2>
+              <div className="accent-line" />
+            </div>
+            <div>
+              <p style={{ fontSize:15, color:'var(--text-muted)', lineHeight:1.8 }}>Every photo tells a story of neighbors coming together—of dignity restored, of hunger answered, and of a community choosing to care for its own.</p>
+              <a href="/gallery" className="btn-outline" style={{ marginTop:20, display:'inline-flex', textDecoration:'none' }}>
+                View Full Gallery
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+            </div>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gridAutoRows:'180px', gap:12 }}>
+            {[
+              { src:'/IMG_3486.jpg', label:'Community Pantry Day', large:true },
+              { src:'/IMG_3490.jpg', label:'Pantry in Action', large:false },
+              { src:'/IMG_3493.jpg', label:'Community Gathering', large:false },
+              { src:'/IMG_3497.jpg', label:'Supplies Ready', large:false },
+              { src:'/IMG_3499.jpg', label:'Church Partnership', large:false },
+              { src:'/IMG_3501.jpg', label:'A Moment of Connection', large:false },
+            ].map((item, i) => (
+              <div key={i} className="gallery-item" style={{ gridColumn: i===0?'span 2':'span 1', gridRow: i===0?'span 2':'span 1', position:'relative', background:'var(--bg-card)', borderRadius:4 }}>
+                <img src={item.src} alt={item.label} style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', display:'block' }} className="gallery-img" />
+                <div className="gallery-overlay" />
+                <div className="gallery-caption"><div style={{ fontFamily:'var(--font-cond)', fontSize:12, fontWeight:600, color:'rgba(255,255,255,0.95)' }}>{item.label}</div></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ══ FOUNDER ══ */}
       <FounderSection />
 
