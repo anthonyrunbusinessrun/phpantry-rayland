@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react'
 
-const VIDEO_ID = 'U9EX3Pt0ff8'
-const EMBED_URL = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1&controls=1&color=white`
+const VIDEO_ID = '-Wy2Ad7y2x8'
+// autoplay=1, mute=1 required by browsers for autoplay without click
+// Volume set to 50 via postMessage after iframe loads
+const EMBED_URL = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1&color=white&enablejsapi=1`
 
 export default function VideoSection() {
   const [playing, setPlaying] = useState(false)
@@ -103,14 +105,29 @@ export default function VideoSection() {
               </button>
             )}
 
-            {/* YouTube iframe — loads only on click */}
+            {/* YouTube iframe — autoplay, volume 50% via postMessage */}
             {playing && (
               <iframe
+                id="yt-player"
                 src={EMBED_URL}
                 style={{ position:'absolute', inset:0, width:'100%', height:'100%', border:'none', zIndex:4 }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 title="PHPantry Philippines — Our Story"
+                onLoad={(e) => {
+                  // Unmute and set volume to 50% after iframe loads
+                  setTimeout(() => {
+                    const frame = e.target as HTMLIFrameElement
+                    try {
+                      frame.contentWindow?.postMessage(JSON.stringify({
+                        event: 'command', func: 'unMute', args: []
+                      }), '*')
+                      frame.contentWindow?.postMessage(JSON.stringify({
+                        event: 'command', func: 'setVolume', args: [50]
+                      }), '*')
+                    } catch(_) {}
+                  }, 1000)
+                }}
               />
             )}
           </div>
