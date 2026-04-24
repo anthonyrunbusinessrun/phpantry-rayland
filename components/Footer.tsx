@@ -3,6 +3,10 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer style={{ background: '#070E1A', borderTop: '1px solid var(--border)', padding: '60px 5% 28px' }}>
+      <style>{`
+        .footer-link { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-link:hover { color: #ECEFF1; }
+      `}</style>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 48, paddingBottom: 48, borderBottom: '1px solid var(--border)' }}>
 
@@ -23,13 +27,7 @@ export default function Footer() {
             <div className="label" style={{ marginBottom: 18 }}>Navigate</div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[['/', 'Home'], ['/about', 'About Us'], ['/gallery', 'Gallery'], ['/get-involved', 'Get Involved']].map(([href, label]) => (
-                <li key={href}>
-                  <Link href={href} style={{ fontSize: 13, color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#ECEFF1')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}>
-                    {label}
-                  </Link>
-                </li>
+                <li key={href}><Link href={href} className="footer-link">{label}</Link></li>
               ))}
             </ul>
           </div>
@@ -39,13 +37,7 @@ export default function Footer() {
             <div className="label" style={{ marginBottom: 18 }}>Get Involved</div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {['Volunteer', 'Donate', 'Partner With Us', 'Church Partnership', 'Spread the Word'].map(label => (
-                <li key={label}>
-                  <Link href="/get-involved" style={{ fontSize: 13, color: 'var(--text-muted)', textDecoration: 'none', transition: 'color 0.2s' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#ECEFF1')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}>
-                    {label}
-                  </Link>
-                </li>
+                <li key={label}><Link href="/get-involved" className="footer-link">{label}</Link></li>
               ))}
             </ul>
           </div>
@@ -55,9 +47,7 @@ export default function Footer() {
             <div className="label" style={{ marginBottom: 18 }}>Contact</div>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {['Find a Pantry', 'Contact Us', 'Pantry Guidelines', 'Privacy Policy'].map(label => (
-                <li key={label}>
-                  <span style={{ fontSize: 13, color: 'var(--text-muted)', cursor: 'pointer', transition: 'color 0.2s' }}>{label}</span>
-                </li>
+                <li key={label}><span className="footer-link" style={{ cursor: 'pointer' }}>{label}</span></li>
               ))}
             </ul>
             <div style={{ marginTop: 24, padding: '14px 16px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 6 }}>
@@ -67,7 +57,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div style={{ paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
           <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>
             © {new Date().getFullYear()} PH Pantry Philippines. Founded by Raymond Land III. All rights reserved.
