@@ -107,7 +107,7 @@ export default function FounderSection() {
 
             {/* Name + handle */}
             <div style={{ textAlign:'center' }}>
-              <div style={{ fontFamily:'var(--font-script)', fontSize:26, color:'var(--text)', lineHeight:1.1, marginBottom:4 }}>Raymond Land III</div>
+              <div style={{ fontFamily:'var(--font-script)', fontSize:26, color:'var(--text)', lineHeight:1.1, marginBottom:4 }}>Ray Land</div>
               <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:600, letterSpacing:'0.18em', textTransform:'uppercase', color:'rgba(14,116,144,0.8)' }}>@itsRayLand</div>
             </div>
 

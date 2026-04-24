@@ -31,63 +31,68 @@ export default function Navbar() {
         @media(max-width:768px){.nav-desktop{display:none!important}.nav-hamburger{display:flex!important}}
         @media(min-width:769px){.nav-hamburger{display:none!important}}
 
-        /* ── ANIMATED LIGHT LINE ── */
-        @keyframes lineShift {
-          0%   { background-position: 0% center; }
-          100% { background-position: 200% center; }
-        }
-        @keyframes travelGlow {
-          0%   { left: -200px; opacity: 0; }
-          4%   { opacity: 1; }
-          96%  { opacity: 1; }
-          100% { left: calc(100% + 200px); opacity: 0; }
-        }
+        /* ── ANIMATED LIGHT LINE — breathing glow, side to side ── */
+
+        /* Base line: always visible, static gradient red→blue→teal */
         .nav-light-line {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
           height: 1px;
-          overflow: visible;
           background: linear-gradient(
             90deg,
-            transparent 0%,
-            #7B0000 8%,
-            #C62828 16%,
-            #9C27B0 26%,
-            #3949AB 36%,
-            #0E7490 46%,
-            #42A5F5 50%,
-            #0E7490 54%,
-            #3949AB 64%,
-            #9C27B0 74%,
-            #C62828 84%,
-            #7B0000 92%,
-            transparent 100%
+            rgba(123,0,0,0.4)   0%,
+            rgba(198,40,40,0.7)  12%,
+            rgba(156,39,176,0.6) 25%,
+            rgba(57,73,171,0.7)  40%,
+            rgba(14,116,144,0.9) 50%,
+            rgba(57,73,171,0.7)  60%,
+            rgba(156,39,176,0.6) 75%,
+            rgba(198,40,40,0.7)  88%,
+            rgba(123,0,0,0.4)    100%
           );
-          background-size: 200% 100%;
-          animation: lineShift 5s linear infinite;
         }
-        /* Travelling bright glow on top */
+
+        /* Glow layer — breathes opacity left peak then right peak */
+        .nav-light-line::before {
+          content: '';
+          position: absolute;
+          inset: -3px 0;
+          background: inherit;
+          filter: blur(4px);
+          animation: glowBreathe 3s ease-in-out infinite alternate;
+        }
+
+        /* Bright centre shimmer — swings left to right slowly */
         .nav-light-line::after {
           content: '';
           position: absolute;
-          top: -3px;
-          height: 7px;
-          width: 180px;
+          top: -2px;
+          height: 5px;
+          width: 40%;
+          left: 0%;
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(198,40,40,0.4),
-            rgba(66,165,245,0.95),
-            rgba(14,116,144,1),
-            rgba(66,165,245,0.95),
-            rgba(198,40,40,0.4),
+            rgba(14,116,144,0.5),
+            rgba(66,165,245,0.9),
+            rgba(14,116,144,0.5),
             transparent
           );
-          border-radius: 8px;
-          filter: blur(3px);
-          animation: travelGlow 5s linear infinite;
+          border-radius: 4px;
+          filter: blur(2px);
+          animation: shimmerSwing 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowBreathe {
+          0%   { opacity: 0.4; transform: scaleY(0.8); }
+          100% { opacity: 1.0; transform: scaleY(1.4); }
+        }
+
+        @keyframes shimmerSwing {
+          0%   { left: 2%;  opacity: 0.6; }
+          100% { left: 60%; opacity: 1.0; }
         }
       `}</style>
 
