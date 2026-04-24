@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import ScrollReveal from '@/components/ScrollReveal'
+import TeamSection from '@/components/TeamSection'
 
 export default function About() {
   return (
@@ -77,6 +78,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* TEAM */}
+      <TeamSection />
 
       {/* GUIDELINES */}
       <section style={{ padding:'100px 5%', background:'linear-gradient(112deg,#071830 0%,#0D2468 35%,#1565C0 65%,#C62828 100%)', position:'relative', overflow:'hidden' }}>
