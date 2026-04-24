@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import VideoSection from '@/components/VideoSection'
+import FounderSection from '@/components/FounderSection'
 
 export default function Home() {
   useEffect(() => {
@@ -300,6 +301,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ══ FOUNDER ══ */}
+      <FounderSection />
 
       {/* ══ GUIDELINES ══ */}
       <section style={{ padding:'100px 5%', background:'var(--hero-grad)', position:'relative', overflow:'hidden' }}>
