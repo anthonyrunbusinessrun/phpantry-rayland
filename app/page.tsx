@@ -96,14 +96,17 @@ export default function Home() {
       <section style={{ padding:'100px 5%', background:'var(--bg)' }}>
         <div style={{ maxWidth:1200, margin:'0 auto', display:'grid', gridTemplateColumns:'1fr 1fr', gap:80, alignItems:'center' }}>
           <div className="apple-left" data-delay="0" style={{ position:'relative' }}>
-            <div style={{ borderRadius:6, height:500, background:'var(--hero-grad)', border:'1px solid rgba(255,255,255,0.07)', position:'relative', overflow:'hidden', display:'flex', alignItems:'center', justifyContent:'center' }}>
-              <div style={{ textAlign:'center', position:'relative', zIndex:1 }}>
-                <div style={{ fontFamily:'var(--font-script)', fontSize:90, opacity:0.18, color:'white', lineHeight:1 }}>PH</div>
-                <div style={{ fontFamily:'var(--font-script)', fontSize:36, color:'rgba(255,255,255,0.7)', marginTop:-12 }}>Pantry</div>
-              </div>
-              <div style={{ position:'absolute', bottom:0, left:0, right:0, background:'linear-gradient(to top,rgba(5,13,24,0.97),transparent)', padding:'32px 32px 32px' }}>
+            <div style={{ borderRadius:6, height:500, border:'1px solid rgba(255,255,255,0.07)', position:'relative', overflow:'hidden' }}>
+              {/* Real community photo */}
+              <img
+                src="/IMG_3502.jpg"
+                alt="PHPantry Philippines community distribution"
+                style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', display:'block' }}
+              />
+              {/* Gradient overlay at bottom for quote */}
+              <div style={{ position:'absolute', bottom:0, left:0, right:0, background:'linear-gradient(to top,rgba(5,13,24,0.96) 0%,rgba(5,13,24,0.5) 60%,transparent 100%)', padding:'32px 28px 28px' }}>
                 <div style={{ width:32, height:2, background:'#0E7490', marginBottom:14 }} />
-                <div style={{ fontFamily:'var(--font-cond)', fontStyle:'italic', fontSize:18, color:'white', lineHeight:1.55 }}>"No Filipino should have to worry about their next meal."</div>
+                <div style={{ fontFamily:'var(--font-cond)', fontStyle:'italic', fontSize:17, color:'white', lineHeight:1.55 }}>"No Filipino should have to worry about their next meal."</div>
                 <div style={{ fontFamily:'var(--font-cond)', fontSize:11, fontWeight:600, letterSpacing:'0.12em', color:'var(--text-muted)', marginTop:10, textTransform:'uppercase' }}>— Raymond Land III, Founder</div>
               </div>
             </div>

@@ -9,12 +9,11 @@ export const metadata: Metadata = {
   keywords: 'PH Pantry, Philippines, community pantry, food access, Raymond Land III, volunteer, hunger relief',
   icons: {
     icon: [
-      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.png', sizes: '64x64', type: 'image/png' },
     ],
     apple: [
-      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon.png', sizes: '64x64', type: 'image/png' },
     ],
-    shortcut: '/favicon.png',
   },
   openGraph: {
     title: 'PH Pantry Philippines — A Movement of Hope',
@@ -30,8 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="any" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
+        <link rel="apple-touch-icon" href="/favicon.png" sizes="64x64" />
+        <meta name="theme-color" content="#0B1220" />
       </head>
       <body>
         <Navbar />

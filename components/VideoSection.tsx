@@ -1,20 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-// ─────────────────────────────────────────────────────────────
-// YOUR VIDEO: https://youtu.be/U9EX3Pt0ff8
-// IMPORTANT: Make sure the video is set to PUBLIC or UNLISTED
-// on YouTube (not Private) — private videos block embeds.
-// YouTube → Studio → Videos → click video → Details → Visibility
-// ─────────────────────────────────────────────────────────────
 const VIDEO_ID = 'U9EX3Pt0ff8'
-
-// Autoplay embed URL — muted is required by browsers for autoplay
-const EMBED_URL = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&controls=1&color=white`
-
-// Poster = your uploaded /public/video-poster.jpg
-// Falls back to YouTube's thumbnail if poster not found
-const POSTER = '/video-poster.jpg'
+const EMBED_URL = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1&controls=1&color=white`
 
 export default function VideoSection() {
   const [playing, setPlaying] = useState(false)
@@ -26,9 +14,8 @@ export default function VideoSection() {
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* top/bottom gradient bleeds */}
-      <div style={{ position:'absolute',top:0,left:0,right:0,height:160,background:'linear-gradient(to bottom,rgba(14,116,144,0.06),transparent)',pointerEvents:'none' }} />
-      <div style={{ position:'absolute',bottom:0,left:0,right:0,height:160,background:'linear-gradient(to top,rgba(7,13,24,0.8),transparent)',pointerEvents:'none' }} />
+      <div style={{ position:'absolute', top:0, left:0, right:0, height:160, background:'linear-gradient(to bottom,rgba(14,116,144,0.06),transparent)', pointerEvents:'none' }} />
+      <div style={{ position:'absolute', bottom:0, left:0, right:0, height:160, background:'linear-gradient(to top,rgba(7,13,24,0.8),transparent)', pointerEvents:'none' }} />
 
       <div style={{ maxWidth:1100, margin:'0 auto', position:'relative', zIndex:1 }}>
 
@@ -43,83 +30,84 @@ export default function VideoSection() {
           </p>
         </div>
 
-        {/* 16:9 Video */}
+        {/* 16:9 container */}
         <div className="apple-scale" data-delay="120">
           <div style={{
-            position:'relative',
-            width:'100%',
-            paddingBottom:'56.25%',
-            borderRadius:12,
-            overflow:'hidden',
-            background:'#000',
+            position:'relative', width:'100%', paddingBottom:'56.25%',
+            borderRadius:12, overflow:'hidden', background:'#000',
             boxShadow:'0 40px 120px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06)',
           }}>
 
-            {/* Poster + play button — shown before play */}
+            {/* Always-visible background gradient so it's never black */}
+            <div style={{
+              position:'absolute', inset:0,
+              background:'var(--hero-grad)',
+              zIndex:0,
+            }} />
+
+            {/* Poster image on top of gradient */}
+            <div style={{
+              position:'absolute', inset:0, zIndex:1,
+              backgroundImage:'url(/video-poster.jpg)',
+              backgroundSize:'cover',
+              backgroundPosition:'center',
+              backgroundRepeat:'no-repeat',
+              opacity: playing ? 0 : 1,
+              transition:'opacity 0.3s',
+            }} />
+
+            {/* Dark tint overlay */}
             {!playing && (
-              <>
-                {/* Thumbnail */}
-                <div style={{
-                  position:'absolute', inset:0,
-                  backgroundImage:`url(${POSTER})`,
-                  backgroundSize:'cover',
-                  backgroundPosition:'center',
-                  backgroundRepeat:'no-repeat',
-                }} />
-                {/* Dark tint */}
-                <div style={{
-                  position:'absolute', inset:0,
-                  background:'linear-gradient(135deg,rgba(7,13,24,0.5) 0%,rgba(59,31,163,0.2) 50%,rgba(14,116,144,0.15) 100%)',
-                }} />
-                {/* Play button */}
-                <button
-                  onClick={() => setPlaying(true)}
-                  aria-label="Play video"
-                  style={{
-                    position:'absolute', inset:0,
-                    display:'flex', flexDirection:'column',
-                    alignItems:'center', justifyContent:'center',
-                    background:'transparent', border:'none', cursor:'pointer', gap:16,
-                  }}
-                >
-                  <div style={{ position:'relative' }}>
-                    {/* Pulse ring */}
-                    <div style={{
-                      position:'absolute', width:110, height:110, borderRadius:'50%',
-                      background:'rgba(14,116,144,0.15)',
-                      top:'50%', left:'50%', transform:'translate(-50%,-50%)',
-                      animation:'ringPulse 2.2s ease-out infinite',
-                    }} />
-                    {/* Button circle */}
-                    <div style={{
-                      width:80, height:80, borderRadius:'50%',
-                      background:'rgba(255,255,255,0.12)',
-                      backdropFilter:'blur(12px)',
-                      WebkitBackdropFilter:'blur(12px)',
-                      border:'2px solid rgba(255,255,255,0.3)',
-                      display:'flex', alignItems:'center', justifyContent:'center',
-                      transition:'all 0.3s',
-                    }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft:4 }}>
-                        <polygon points="5,3 19,12 5,21" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div style={{
-                    fontFamily:'var(--font-cond)', fontSize:11, fontWeight:600,
-                    letterSpacing:'0.2em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)',
-                  }}>
-                    Watch Our Story
-                  </div>
-                </button>
-              </>
+              <div style={{
+                position:'absolute', inset:0, zIndex:2,
+                background:'linear-gradient(135deg,rgba(7,13,24,0.45) 0%,rgba(59,31,163,0.2) 50%,rgba(14,116,144,0.15) 100%)',
+              }} />
             )}
 
-            {/* YouTube iframe — only loads on click */}
+            {/* Play button */}
+            {!playing && (
+              <button
+                onClick={() => setPlaying(true)}
+                aria-label="Play video"
+                style={{
+                  position:'absolute', inset:0, zIndex:3,
+                  display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+                  background:'transparent', border:'none', cursor:'pointer', gap:16,
+                }}
+              >
+                <div style={{ position:'relative' }}>
+                  <div style={{
+                    position:'absolute', width:110, height:110, borderRadius:'50%',
+                    background:'rgba(14,116,144,0.15)',
+                    top:'50%', left:'50%', transform:'translate(-50%,-50%)',
+                    animation:'ringPulse 2.2s ease-out infinite',
+                  }} />
+                  <div style={{
+                    width:80, height:80, borderRadius:'50%',
+                    background:'rgba(255,255,255,0.12)',
+                    backdropFilter:'blur(12px)',
+                    WebkitBackdropFilter:'blur(12px)',
+                    border:'2px solid rgba(255,255,255,0.3)',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    transition:'all 0.3s',
+                  }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft:4 }}>
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                  </div>
+                </div>
+                <div style={{
+                  fontFamily:'var(--font-cond)', fontSize:11, fontWeight:600,
+                  letterSpacing:'0.2em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)',
+                }}>Watch Our Story</div>
+              </button>
+            )}
+
+            {/* YouTube iframe — loads only on click */}
             {playing && (
               <iframe
                 src={EMBED_URL}
-                style={{ position:'absolute', inset:0, width:'100%', height:'100%', border:'none' }}
+                style={{ position:'absolute', inset:0, width:'100%', height:'100%', border:'none', zIndex:4 }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 title="PHPantry Philippines — Our Story"
