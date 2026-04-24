@@ -80,7 +80,7 @@ export default function FounderSection() {
               }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/rayland.png"
+                  src="/Rayland.jpeg"
                   alt="Raymond Land III — Founder of PH Pantry Philippines"
                   style={{
                     width:'100%', height:'100%',
