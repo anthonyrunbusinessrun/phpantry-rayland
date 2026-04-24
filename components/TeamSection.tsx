@@ -56,11 +56,7 @@ export default function TeamSection() {
         </div>
 
         {/* Team grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 20,
-        }}>
+        <div className="grid-team" style={{ gap: 20 }}>
           {TEAM.map((member, i) => (
             <div
               key={i}

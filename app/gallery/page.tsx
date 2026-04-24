@@ -52,7 +52,7 @@ export default function Gallery() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gridAutoRows: '280px',
+            gridAutoRows: '260px',
             gap: 12,
           }}>
             {GALLERY.map((photo, i) => (
