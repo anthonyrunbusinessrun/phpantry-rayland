@@ -98,9 +98,11 @@ export default function Navbar() {
 
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? 'rgba(7,13,24,0.96)' : 'rgba(7,13,24,0.3)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+        background: scrolled
+          ? 'linear-gradient(135deg, rgba(60,0,0,0.97) 0%, rgba(30,0,0,0.97) 40%, rgba(10,5,15,0.97) 100%)'
+          : 'linear-gradient(135deg, rgba(60,0,0,0.55) 0%, rgba(30,0,0,0.45) 40%, rgba(10,5,15,0.35) 100%)',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
         transition: 'background 0.4s ease',
         padding: '0 5%',
       }}>
