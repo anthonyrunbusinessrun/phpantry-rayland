@@ -99,8 +99,8 @@ export default function Navbar() {
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         background: scrolled
-          ? 'linear-gradient(90deg, rgba(80,0,0,0.97) 0%, rgba(140,0,0,0.97) 50%, rgba(198,10,10,0.97) 100%)'
-          : 'linear-gradient(90deg, rgba(80,0,0,0.6) 0%, rgba(140,0,0,0.55) 50%, rgba(198,10,10,0.55) 100%)',
+          ? 'linear-gradient(180deg, rgb(6,14,28) 0%, rgb(9,21,40) 100%)'
+          : 'linear-gradient(180deg, rgba(6,14,28,0.85) 0%, rgba(9,21,40,0.85) 100%)',
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',
         transition: 'background 0.4s ease',
