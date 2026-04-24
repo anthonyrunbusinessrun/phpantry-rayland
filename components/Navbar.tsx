@@ -23,6 +23,7 @@ export default function Navbar() {
   return (
     <>
       <style>{`
+        /* ── NAV LINKS ── */
         .nav-link{font-family:var(--font-cond);font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
         .nav-link:hover{color:#ECEFF1}
         .nav-mobile-link{display:block;padding:14px 0;font-family:var(--font-cond);font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--border);transition:color 0.2s}
@@ -31,87 +32,83 @@ export default function Navbar() {
         @media(min-width:769px){.nav-hamburger{display:none!important}}
 
         /* ── ANIMATED LIGHT LINE ── */
+        @keyframes lineShift {
+          0%   { background-position: 0% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes travelGlow {
+          0%   { left: -200px; opacity: 0; }
+          4%   { opacity: 1; }
+          96%  { opacity: 1; }
+          100% { left: calc(100% + 200px); opacity: 0; }
+        }
         .nav-light-line {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
           height: 1px;
+          overflow: visible;
           background: linear-gradient(
             90deg,
-            transparent       0%,
-            transparent       10%,
-            #C62828           20%,
-            #7B1FA2           30%,
-            #1565C0           40%,
-            #0E7490           50%,
-            #1565C0           60%,
-            #7B1FA2           70%,
-            #C62828           80%,
-            transparent       90%,
-            transparent       100%
+            transparent 0%,
+            #7B0000 8%,
+            #C62828 16%,
+            #9C27B0 26%,
+            #3949AB 36%,
+            #0E7490 46%,
+            #42A5F5 50%,
+            #0E7490 54%,
+            #3949AB 64%,
+            #9C27B0 74%,
+            #C62828 84%,
+            #7B0000 92%,
+            transparent 100%
           );
           background-size: 200% 100%;
-          animation: lightSweep 4s linear infinite;
-          opacity: 0;
-          transition: opacity 0.4s ease;
+          animation: lineShift 5s linear infinite;
         }
-        .nav-light-line.visible {
-          opacity: 1;
-        }
-        /* The travelling glow on top of the line */
+        /* Travelling bright glow on top */
         .nav-light-line::after {
           content: '';
           position: absolute;
-          top: -2px;
-          left: 0;
-          width: 120px;
-          height: 5px;
+          top: -3px;
+          height: 7px;
+          width: 180px;
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(198,40,40,0.6),
-            rgba(21,101,192,0.9),
+            rgba(198,40,40,0.4),
+            rgba(66,165,245,0.95),
             rgba(14,116,144,1),
-            rgba(21,101,192,0.9),
-            rgba(198,40,40,0.6),
+            rgba(66,165,245,0.95),
+            rgba(198,40,40,0.4),
             transparent
           );
-          border-radius: 4px;
-          filter: blur(2px);
-          animation: glowTravel 4s linear infinite;
-        }
-        @keyframes lightSweep {
-          0%   { background-position: 100% 0; }
-          100% { background-position: -100% 0; }
-        }
-        @keyframes glowTravel {
-          0%   { left: -120px; opacity: 0; }
-          5%   { opacity: 1; }
-          95%  { opacity: 1; }
-          100% { left: 100%; opacity: 0; }
+          border-radius: 8px;
+          filter: blur(3px);
+          animation: travelGlow 5s linear infinite;
         }
       `}</style>
 
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? 'rgba(7,13,24,0.96)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(24px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.04)' : '1px solid transparent',
-        transition: 'all 0.4s ease',
+        background: scrolled ? 'rgba(7,13,24,0.96)' : 'rgba(7,13,24,0.3)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        transition: 'background 0.4s ease',
         padding: '0 5%',
       }}>
         <div style={{ maxWidth:1200, margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'space-between', height:68 }}>
 
-          {/* LOGO */}
+          {/* ── LOGO ── */}
           <Link href="/" style={{ textDecoration:'none', display:'flex', alignItems:'center' }}>
             {!logoError ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src="/logo.png"
                 alt="PH Pantry Philippines"
-                height={44}
-                style={{ height:44, width:'auto', objectFit:'contain', maxWidth:200 }}
+                style={{ height:42, width:'auto', objectFit:'contain', maxWidth:200, display:'block' }}
                 onError={() => setLogoError(true)}
               />
             ) : (
@@ -127,7 +124,7 @@ export default function Navbar() {
             )}
           </Link>
 
-          {/* DESKTOP */}
+          {/* ── DESKTOP LINKS ── */}
           <ul className="nav-desktop" style={{ display:'flex', alignItems:'center', gap:36, listStyle:'none', margin:0 }}>
             {NAV_LINKS.map(({ href, label }) => (
               <li key={href}><Link href={href} className="nav-link">{label}</Link></li>
@@ -139,7 +136,7 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* HAMBURGER */}
+          {/* ── HAMBURGER ── */}
           <button
             className="nav-hamburger"
             onClick={() => setOpen(!open)}
@@ -155,10 +152,10 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* ANIMATED LIGHT LINE — always visible at bottom of nav */}
-        <div className={`nav-light-line ${scrolled ? 'visible' : 'visible'}`} />
+        {/* ── ANIMATED LIGHT LINE ── */}
+        <div className="nav-light-line" />
 
-        {/* MOBILE MENU */}
+        {/* ── MOBILE MENU ── */}
         {open && (
           <div style={{ background:'rgba(7,13,24,0.98)', borderTop:'1px solid var(--border)', padding:'8px 5% 20px' }}>
             {NAV_LINKS.map(({ href, label }) => (
