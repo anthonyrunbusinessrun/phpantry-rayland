@@ -81,7 +81,7 @@ export default function FounderSection() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/Rayland.jpeg"
-                  alt="Raymond Land III — Founder of PH Pantry Philippines"
+                  alt="Ray Land — Founder of PH Pantry Philippines"
                   style={{
                     width:'100%', height:'100%',
                     objectFit:'cover',
@@ -148,7 +148,7 @@ export default function FounderSection() {
             </p>
 
             <p style={{ fontSize:15, color:'var(--text-muted)', lineHeight:1.9, marginBottom:24, fontWeight:300 }}>
-              Beyond business, Raymond is driven by a deep belief in people and community. PHPantry Philippines is the embodiment of that belief — a movement rooted in compassion, built on faith, and sustained by the generosity of neighbors helping neighbors.
+              Beyond business, Ray is driven by a deep belief in people and community. PHPantry Philippines is the embodiment of that belief — a movement rooted in compassion, built on faith, and sustained by the generosity of neighbors helping neighbors.
             </p>
 
             {/* Quote */}
@@ -161,7 +161,7 @@ export default function FounderSection() {
                 "No Filipino should have to worry about their next meal. That's not just a goal — it's a responsibility we all share."
               </p>
               <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:600, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--text-muted)', marginTop:8 }}>
-                — Raymond Land III
+                — Ray Land
               </div>
             </div>
 
