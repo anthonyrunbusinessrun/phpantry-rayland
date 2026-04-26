@@ -15,7 +15,7 @@ export default function Footer() {
             <div style={{ fontFamily: 'var(--font-script)', fontSize: 28, color: '#ECEFF1', marginBottom: 4 }}>PH Pantry</div>
             <div style={{ fontFamily: 'var(--font-cond)', fontSize: 10, fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#EF5350', marginBottom: 16 }}>Philippines</div>
             <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.8, maxWidth: 260 }}>
-              Founded by Raymond Land III. A heartfelt initiative building community pantries rooted in compassion, faith, and shared responsibility.
+              Founded by Ray Land. A heartfelt initiative building community pantries rooted in compassion, faith, and shared responsibility.
             </p>
             <div style={{ marginTop: 20 }}>
               <span className="badge badge-live" style={{ fontSize: 10 }}>Active Movement</span>
@@ -59,7 +59,7 @@ export default function Footer() {
 
         <div style={{ paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
           <div style={{ fontSize: 12, color: 'var(--text-dim)' }}>
-            © {new Date().getFullYear()} PH Pantry Philippines. Founded by Raymond Land III. All rights reserved.
+            © {new Date().getFullYear()} PH Pantry Philippines. Founded by Ray Land. All rights reserved.
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--text-dim)' }}>
             <span>Made with</span>
