@@ -100,7 +100,7 @@ export default function Home() {
               <div style={{ position:'absolute', bottom:0, left:0, right:0, background:'linear-gradient(to top,rgba(5,13,24,0.96) 0%,rgba(5,13,24,0.5) 60%,transparent 100%)', padding:'28px 24px 24px' }}>
                 <div style={{ width:28, height:2, background:'#0E7490', marginBottom:12 }} />
                 <div style={{ fontFamily:'var(--font-cond)', fontStyle:'italic', fontSize:'clamp(14px,1.5vw,17px)', color:'white', lineHeight:1.55 }}>"No Filipino should have to worry about their next meal."</div>
-                <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:600, letterSpacing:'0.12em', color:'var(--text-muted)', marginTop:8, textTransform:'uppercase' }}>— Raymond Land III, Founder</div>
+                <div style={{ fontFamily:'var(--font-cond)', fontSize:10, fontWeight:600, letterSpacing:'0.12em', color:'var(--text-muted)', marginTop:8, textTransform:'uppercase' }}>— Ray Land, Founder</div>
               </div>
             </div>
             <div style={{ position:'absolute', bottom:-24, right:-24, background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:6, padding:'16px 20px', boxShadow:'0 8px 30px rgba(0,0,0,0.4)' }}>
@@ -113,7 +113,7 @@ export default function Home() {
             <span className="section-tag">Welcome to PHPantry Philippines</span>
             <h2 style={{ fontSize:'clamp(26px,4vw,50px)', lineHeight:1.1, marginBottom:16, color:'var(--text)' }}>A Heartfelt Initiative<br/>for Every <span className="text-teal">Filipino</span></h2>
             <div className="accent-line" />
-            <p style={{ fontSize:15, color:'var(--text-muted)', lineHeight:1.9, marginBottom:16, fontWeight:300 }}>PHPantry Philippines is a heartfelt initiative founded by Raymond Land III, built on the belief that no Filipino should have to worry about their next meal. Through strategically placed community pantries, we create safe and reliable spaces where individuals and families can access essential food and supplies with dignity.</p>
+            <p style={{ fontSize:15, color:'var(--text-muted)', lineHeight:1.9, marginBottom:16, fontWeight:300 }}>PHPantry Philippines is a heartfelt initiative founded by Ray Land, built on the belief that no Filipino should have to worry about their next meal. Through strategically placed community pantries, we create safe and reliable spaces where individuals and families can access essential food and supplies with dignity.</p>
             <p style={{ fontSize:15, color:'var(--text-muted)', lineHeight:1.9, marginBottom:28, fontWeight:300 }}>More than just giving, PHPantry is about sharing. It brings together communities, churches, volunteers, and partners to lift each other up—proving that even the smallest act of kindness can make a lasting difference.</p>
             <div className="grid-2col" style={{ gap:12 }}>
               {[{icon:'🎯',title:'Our Mission',text:'To make food accessible, consistent, and dignified for every Filipino in need by building community-driven pantries rooted in compassion, faith, and shared responsibility.',accent:'#0E7490'},{icon:'🌟',title:'Our Vision',text:'A Philippines where no one goes hungry and every community is strengthened through unity, care, and hope.',accent:'#3B1FA3'}].map(item=>(
